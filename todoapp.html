@@ -1,56 +1,56 @@
 <!DOCTYPE html>
 <html lang="ja" ng-app>
     <head>
-        <title>ToDo App test</title>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.5/angular.min.js"></script>
     </head>
-
+    
     <body>
         <div ng-controller="TodoController">
             <h2>Todo <span>{{todos.length}}件</span></h2>
             <div>
-                    [ <a href="" ng-click="clear()">完了済を消去</a> ]
+                [ <a href="" ng-click="clear()">完了済を消去</a> ]
                 <ul>
                     <li ng-repeat="todo in todos">
-                        <input type="checkbox" ng-model="todo.done">
-                        <span class="done-{{todo.done}}">{{todo.text}}</span>
+                    <input type="checkbox" ng-model="todo.done">
+                    <span class="done-{{todo.done}}">{{todo.text}}</span>
                     </li>
                 </ul>
-                <form ng-submit="addTodo()">
+                    <form ng-submit="addTodo()">
                     <input type="text" ng-model="text" size="30" placeholder="Todoを入れてください。">
                     <input type="submit" value="Todo追加">
                 </form>
             </div>
         </div>
+
         <script>
-            //Todoコントローラー
-            function TodoController($scope) {
-                $scope.todos = [
-                    {text:’シャンプー購入’, done:true},
-                    {text:’腹筋100回’, done:false},
-                    {text:’ヤマダさんと会食’, done:false}
-                ];
-                
-                $scope.addTodo = function() {
-                    if($scope.text){
-                        $scope.todos.push({text:$scope.text, done:false});
-                        $scope.text = ”;
-                    }
-                };
-                
-                $scope.clear = function() {
-                    var oldTodos = $scope.todos;
-                    $scope.todos = [];
-                    angular.forEach(oldTodos, function(todo) {
-                        if (!todo.done) $scope.todos.push(todo);
-                    });
-                };
-            }
+        function TodoController($scope) {
+            $scope.todos = [
+                {text:’シャンプー購入’, done:true},
+                {text:’腹筋100回’, done:false},
+                {text:’ヤマダさんと会食’, done:false}
+            ];
+
+            $scope.addTodo = function() {
+                if($scope.text){
+                    $scope.todos.push({text:$scope.text, done:false});
+                    $scope.text = ”;
+                }
+            };
+
+            $scope.clear = function() {
+                var oldTodos = $scope.todos;
+                $scope.todos = [];
+                angular.forEach(oldTodos, function(todo) {
+                    if (!todo.done) $scope.todos.push(todo);
+                });
+            };
+
+        }
         </script>
         <style>
             .done-true {
                 text-decoration: line-through;
-                color: gray;
+                color: #bbb;
             }
         </style>
     </body>
